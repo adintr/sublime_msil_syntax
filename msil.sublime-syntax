@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: MSIL
+file_extensions: [il, msil]
+scope: text.msil
+contexts:
+  main: []
