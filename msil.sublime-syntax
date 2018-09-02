@@ -3,6 +3,82 @@
 # http://www.sublimetext.com/docs/3/syntax.html
 name: MSIL
 file_extensions: [il, msil]
-scope: text.msil
+scope: source.msil
+variables:
+  keyword_pseudo1: assembly|extern|module|namespace|class|field|method|public|auto|ansi|extends|static|cli|managed|entrypoint|locals|init|at|data|explicit|size
+  keyword_pseudo2: pinvokeimpl|cdecl|unmanaged|native
+  keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}'
+  keyword_libname: mscorlib
+  keyword_stdtype: System|Object|ValueType|Console|int8|int32|void|string|valuetype|vararg|bytearray
+  keyword_stdfunc: WriteLine|ReadLine
+
+  inst_load:  ldstr|ldloc|ldc\.i4|ldsflda|
+  inst_store: stloc
+  inst_calc: and
+  inst_jump: brfalse|brtrue|br|call|ret
+  inst_all: '{{inst_load}}|{{inst_store}}|{{inst_calc}}|{{inst_jump}}'
+
 contexts:
-  main: []
+  main:
+    - include: pinstruction
+    - include: rinstruction
+    - include: comments
+    - match: '"'
+      push: string
+
+  string:
+    - meta_scope: string.quoted.double.msil
+    - match: \\.
+      scope: constant.character.escape.msil
+    - match: '"'
+      pop: true
+
+  comments:
+    - match: '//'
+      scope: punctuation.definition.comment.cs
+      push:
+        - meta_scope: comment.line.double-slash.cs
+        - match: $\n?
+          pop: true
+
+  pinstruction:
+    - match: ^\s*\.
+      scope: keyword.control.msil
+      push: 
+        - meta_content_scope: markup.italic
+        - include: pseudo_keywords
+        - include: libfiles
+        - include: typenames
+        - match: \n|\{
+          pop: true
+
+  rinstruction:
+    - include: label
+    - include: instructionline
+    - include: typenames
+    - include: libfiles
+    - match: '{{keyword_stdfunc}}'
+      scope: entity.name.tag
+
+  label:
+    - match: '^\s*(\w)+:'
+      scope: markup.italic
+
+  instructionline:
+    - match: \b({{inst_all}})\b
+      scope: keyword.operator.msil
+
+  typenames:
+    - match: \b({{keyword_stdtype}}(\.|::)?)+
+      scope: support.type.msil
+
+  libfiles:
+    - match: \b({{keyword_libname}})\b
+      scope: entity.name.msil
+
+    - match: \[{{keyword_libname}}\]
+      scope: entity.name.msil
+
+  pseudo_keywords:
+    - match: '\b({{keyword_pseudo}})\b'
+      scope: keyword.control.msil
