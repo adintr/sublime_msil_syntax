@@ -5,3 +5,6 @@ A Microsoft .NET IL Assembler syntax highlight plugin for sublime text 3
 
 # Setup
 Download or clone it to C:\Users\<your windows user name>\AppData\Roaming\Sublime Text 3\Packages\User\
+
+# Snapshot
+![snapshot](./screenshot/even.png)
