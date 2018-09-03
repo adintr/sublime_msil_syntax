@@ -7,16 +7,16 @@ scope: source.msil
 variables:
   keyword_pseudo1: assembly|extern|module|namespace|class|value|enum|field|method|public|private|family|famandassem|famorassem|privatescope
   keyword_pseudo2: auto|sequential|explicit|ansi|unicode|autochar|extends|implements|static|entrypoint|locals|init|at|data|explicit|size
-  keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native
+  keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try
   keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}'
   keyword_libname: mscorlib
-  keyword_stdtype: System|Object|ValueType|Enum|Console|int8|int32|void|string|valuetype|vararg|bytearray
+  keyword_stdtype: System|Object|ValueType|Enum|Exception|Console|int8|int32|void|string|valuetype|vararg|bytearray
   keyword_stdfunc: WriteLine|ReadLine
 
-  inst_load:  ldstr|ldloc|ldc\.i4|ldfld|ldflda|ldsfld|ldsflda
-  inst_store: stloc
+  inst_load:  ldnull|ldstr|ldloc\.0|ldloc\.1|ldloc\.2|ldloc\.3|ldloc\.s|ldloc|ldc\.i4\.[0-8]|ldc\.i4\.m1|ldc\.i4\.s|ldc\.i4|ldfld|ldflda|ldsfld|ldsflda
+  inst_store: pop|stloc\.0|stloc\.1|stloc\.2|stloc\.3|stloc\.s|stloc
   inst_calc: and
-  inst_jump: brfalse|brtrue|br|call|ret
+  inst_jump: br\.s|brfalse\.s|brtrue\.s|brfalse|brtrue|br|call|ret|catch|leave\.s|leave
   inst_all: '{{inst_load}}|{{inst_store}}|{{inst_calc}}|{{inst_jump}}'
 
 contexts:
