@@ -7,7 +7,8 @@ scope: source.msil
 variables:
   keyword_pseudo1: assembly|extern|module|namespace|class|value|enum|field|method|public|private|family|famandassem|famorassem|privatescope
   keyword_pseudo2: auto|sequential|explicit|ansi|unicode|autochar|extends|implements|static|entrypoint|locals|init|at|data|explicit|size
-  keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try
+  keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try|noappdomain|noprocess|nomachine|hash|algorithm|ver|publickey|locale
+  keyword_pseudo4: publickeytoken|as
   keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}'
   keyword_libname: mscorlib
   keyword_stdtype: System|Object|ValueType|Enum|Exception|Console|int8|int32|void|string|valuetype|vararg|bytearray
