@@ -9,20 +9,22 @@ variables:
   keyword_pseudo2: auto|sequential|explicit|ansi|unicode|autochar|extends|implements|static|entrypoint|locals|init|at|data|explicit|size|pack
   keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try|noappdomain|noprocess|nomachine|hash|algorithm|ver|publickey|locale
   keyword_pseudo4: publickeytoken|as|file|nometadata|mresource|at|nested|interface|abstract|sealed|specialname|import|serializable|beforefieldinit
-  keyword_pseudo5: rtspecialname|hidebysig|instance|runtime|virtual|newslot|modreq|modopt|pinned|initonly|literal|notserialized|marshal
-  keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}|{{keyword_pseudo4}}|{{keyword_pseudo5}}'
+  keyword_pseudo5: rtspecialname|hidebysig|instance|runtime|virtual|newslot|modreq|modopt|pinned|initonly|literal|notserialized|marshal|final
+  keyword_pseudo6: unmanagedexp|reqsecobj|optial|forwardref|preservesig|internalcall|synchronized|noinlining|in|out|opt|param|override|
+  keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}|{{keyword_pseudo4}}|{{keyword_pseudo5}}|{{keyword_pseudo6}}'
   keyword_libname: mscorlib
   keyword_stdtype1: void|bool|char|int8|int16|int32|int64|float32|float64|typedref|unsigned|object
   keyword_stdtype2: System|Object|ValueType|Enum|Exception|Console|string|valuetype|vararg|bytearray
   keyword_stdtype: '{{keyword_stdtype1}}|{{keyword_stdtype2}}'
   keyword_stdfunc: WriteLine|ReadLine
 
-  inst_load:  ldnull|ldstr|ldloc\.[0-3,s]|ldloc|ldloca|ldc\.i4\.[0-8]|ldc\.i4\.m1|ldc\.i4\.s|ldc\.i4|ldfld|ldflda|ldsfld|ldsflda|ldftn|ldtoken|ldarg.0
-  inst_store: pop|stloc\.[0-3]|stloc\.s|stloc|stind\.i4
-  inst_calc: and|add
-  inst_jump: br\.s|brfalse\.s|brtrue\.s|brfalse|brtrue|br|call|calli|ret|catch|leave\.s|leave
-  inst_objs: newobj
-  inst_all: '{{inst_load}}|{{inst_store}}|{{inst_calc}}|{{inst_jump}}|{{inst_objs}}'
+  inst_load:  ldnull|ldstr|ldloc\.[0-3,s]|ldloc|ldloca|ldc\.i4\.[0-8]|ldc\.i4\.m1|ldc\.i4\.s|ldc\.i4|ldfld|ldflda|ldsfld|ldsflda|ldftn|ldtoken|ldarg.0|ldind\.u8
+  inst_store: pop|stloc\.[0-3]|stloc\.s|stloc|stind\.i4|stfld|stsfld
+  inst_stack: dup|arglist
+  inst_calc: and|add|refanyval
+  inst_jump: br\.s|brfalse\.s|brtrue\.s|brfalse|brtrue|br|call|calli|callvirt|ret|catch|leave\.s|leave
+  inst_objs: newobj|castclass|box
+  inst_all: '{{inst_load}}|{{inst_store}}|{{inst_stack}}|{{inst_calc}}|{{inst_jump}}|{{inst_objs}}'
 
 contexts:
   main:
