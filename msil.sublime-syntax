@@ -22,9 +22,10 @@ variables:
   inst_store: pop|stloc\.[0-3]|stloc\.s|stloc|stind\.i4|stfld|stsfld
   inst_stack: dup|arglist
   inst_calc: and|add|refanyval
-  inst_jump: br\.s|brfalse\.s|brtrue\.s|brfalse|brtrue|br|call|calli|callvirt|ret|catch|leave\.s|leave
+  inst_jump: br(false|null|zero|true|inst)?(\.s)?|b(eq|ne\.un|ge\.un|ge|gt\.un|gt|le\.un|le|lt\.un|lt)(\.s)?|switch|break|ret|catch|leave(\.s)?
+  inst_call: call|calli|callvirt
   inst_objs: newobj|castclass|box
-  inst_all: '{{inst_load}}|{{inst_store}}|{{inst_stack}}|{{inst_calc}}|{{inst_jump}}|{{inst_objs}}'
+  inst_all: '{{inst_load}}|{{inst_store}}|{{inst_stack}}|{{inst_calc}}|{{inst_jump}}|{{inst_call}}|{{inst_objs}}'
 
 contexts:
   main:
