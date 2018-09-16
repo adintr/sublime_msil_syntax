@@ -18,14 +18,24 @@ variables:
   keyword_stdtype: '{{keyword_stdtype1}}|{{keyword_stdtype2}}'
   keyword_stdfunc: WriteLine|ReadLine
 
-  inst_load:  ldnull|ldstr|ldloc\.[0-3,s]|ldloc|ldloca|ldc\.i4\.[0-8]|ldc\.i4\.m1|ldc\.i4\.s|ldc\.i4|ldfld|ldflda|ldsfld|ldsflda|ldftn|ldtoken|ldarg.0|ldind\.u8
-  inst_store: pop|stloc\.[0-3]|stloc\.s|stloc|stind\.i4|stfld|stsfld
-  inst_stack: dup|arglist
-  inst_calc: and|add|refanyval
+  inst_loadconst:  ldloc\.[0-3,s]|ldloc|ldloca(\.s)?|ldc\.i4\.[0-8]|ldc\.i4\.m1|ldc\.i4\.s|ldc\.i4|ldc\.(i8|r4|r8)|ldfld|ldflda|ldsfld|ldsflda|ldftn|ldvirtftn|ldtoken
+  inst_loadother: ldnull|ldstr|ldobj
+  inst_loadargs: ldarg(\.(s|0|1|2|3))?|ldarga(\.s)?
+  inst_loadind: ldind\.(i1|i2|i4|i8|i|u1|u2|u4|u8|r4|r8|ref)
+  inst_storind: stind\.(i1|i2|i4|i8|i|r4|r8|ref)
+  inst_store: stloc(\.[0-3,s])?|stfld|stsfld|starg(\.s)?|stobj
+  inst_loads: '{{inst_loadconst}}|{{inst_loadind}}|{{inst_loadargs}}|{{inst_loadother}}'
+  inst_stores: '{{inst_store}}|{{inst_storind}}'
+  inst_stack: dup|arglist|nop|pop|localloc
+  inst_calc: and|or|xor|not|add\.ovf\.un|add\.ovf|add|sub\.ovf\.un|sub\.ovf|sub|mul\.ovf\.un|mul\.ovf|mul|div\.un|div|rem\.un|rem|neg|shl|shr\.un|shr
+  inst_conv: conv\.(i1|i2|i4|i8|i|u1|u2|u4|u8|u|r4|r8|r\.un)|conv\.ovf\.(i1|i2|i4|i8|i|u1|u2|u4|u8|u)(\.un)?
+  inst_check: ceq|cgt\.un|cgt|clt\.un|clt|ckfinite|cpblk|initblk|isinst|sizeof|throw|rethrow
+  inst_calcs: '{{inst_calc}}|{{inst_conv}}'
   inst_jump: br(false|null|zero|true|inst)?(\.s)?|b(eq|ne\.un|ge\.un|ge|gt\.un|gt|le\.un|le|lt\.un|lt)(\.s)?|switch|break|ret|catch|leave(\.s)?
-  inst_call: call|calli|callvirt
-  inst_objs: newobj|castclass|box
-  inst_all: '{{inst_load}}|{{inst_store}}|{{inst_stack}}|{{inst_calc}}|{{inst_jump}}|{{inst_call}}|{{inst_objs}}'
+  inst_call: call|calli|callvirt|jmp
+  inst_objs: newobj|cpobj|initobj|castclass|box|unbox|mkrefany|refanytype|refanyval|volatile|unaligned|tail
+  inst_arry: newarr|ldlen|ldelema|ldelem\.(i1|u1|i2|u2|i4|u4|i8|i|r4|r8|ref)|stelem\.(i1|i2|i4|i8|i|r4|r8|ref)
+  inst_all: '{{inst_loads}}|{{inst_stores}}|{{inst_stack}}|{{inst_calcs}}|{{inst_jump}}|{{inst_call}}|{{inst_objs}}|{{inst_arry}}'
 
 contexts:
   main:
