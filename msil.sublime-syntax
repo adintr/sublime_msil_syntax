@@ -7,10 +7,10 @@ scope: source.msil
 variables:
   keyword_pseudo1: assembly|extern|module|namespace|class|value|enum|field|method|public|private|family|famandassem|famorassem|privatescope
   keyword_pseudo2: auto|sequential|explicit|ansi|unicode|autochar|extends|implements|static|entrypoint|locals|init|at|data|explicit|size|pack
-  keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try|noappdomain|noprocess|nomachine|hash|algorithm|ver|publickey|locale
+  keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try|to|handler|catch|filter|finally|fault|noappdomain|noprocess|nomachine|hash|algorithm|ver|publickey|locale
   keyword_pseudo4: publickeytoken|as|file|nometadata|mresource|at|nested|interface|abstract|sealed|specialname|import|serializable|beforefieldinit
-  keyword_pseudo5: rtspecialname|hidebysig|instance|runtime|virtual|newslot|modreq|modopt|pinned|initonly|literal|notserialized|marshal|final
-  keyword_pseudo6: unmanagedexp|reqsecobj|optial|forwardref|preservesig|internalcall|synchronized|noinlining|in|out|opt|param|override|
+  keyword_pseudo5: rtspecialname|hidebysig|instance|runtime|virtual|newslot|modreq|modopt|pinned|initonly|literal|notserialized|marshal|final|property|set|get
+  keyword_pseudo6: unmanagedexp|reqsecobj|optial|forwardref|preservesig|internalcall|synchronized|noinlining|in|out|opt|param|override|event|addon|removeon|fire|other
   keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}|{{keyword_pseudo4}}|{{keyword_pseudo5}}|{{keyword_pseudo6}}'
   keyword_libname: mscorlib
   keyword_stdtype1: void|bool|char|int8|int16|int32|int64|float32|float64|typedref|unsigned|object
@@ -31,11 +31,12 @@ variables:
   inst_conv: conv\.(i1|i2|i4|i8|i|u1|u2|u4|u8|u|r4|r8|r\.un)|conv\.ovf\.(i1|i2|i4|i8|i|u1|u2|u4|u8|u)(\.un)?
   inst_check: ceq|cgt\.un|cgt|clt\.un|clt|ckfinite|cpblk|initblk|isinst|sizeof|throw|rethrow
   inst_calcs: '{{inst_calc}}|{{inst_conv}}'
-  inst_jump: br(false|null|zero|true|inst)?(\.s)?|b(eq|ne\.un|ge\.un|ge|gt\.un|gt|le\.un|le|lt\.un|lt)(\.s)?|switch|break|ret|catch|leave(\.s)?
+  inst_jump: br(false|null|zero|true|inst)?(\.s)?|b(eq|ne\.un|ge\.un|ge|gt\.un|gt|le\.un|le|lt\.un|lt)(\.s)?|switch|break|ret|leave(\.s)?
   inst_call: call|calli|callvirt|jmp
   inst_objs: newobj|cpobj|initobj|castclass|box|unbox|mkrefany|refanytype|refanyval|volatile|unaligned|tail
   inst_arry: newarr|ldlen|ldelema|ldelem\.(i1|u1|i2|u2|i4|u4|i8|i|r4|r8|ref)|stelem\.(i1|i2|i4|i8|i|r4|r8|ref)
-  inst_all: '{{inst_loads}}|{{inst_stores}}|{{inst_stack}}|{{inst_calcs}}|{{inst_jump}}|{{inst_call}}|{{inst_objs}}|{{inst_arry}}'
+  inst_preudo: endfinally|endfilter|endfault|catch
+  inst_all: '{{inst_loads}}|{{inst_stores}}|{{inst_stack}}|{{inst_calcs}}|{{inst_jump}}|{{inst_call}}|{{inst_objs}}|{{inst_arry}}|{{inst_preudo}}'
 
 contexts:
   main:
