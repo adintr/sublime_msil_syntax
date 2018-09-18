@@ -5,16 +5,17 @@ name: MSIL
 file_extensions: [il, msil]
 scope: source.msil
 variables:
-  keyword_pseudo1: assembly|extern|module|namespace|class|value|enum|field|method|public|private|family|famandassem|famorassem|privatescope|permissionset
-  keyword_pseudo2: auto|sequential|explicit|ansi|unicode|autochar|extends|implements|static|entrypoint|locals|init|at|data|explicit|size|pack|custom|permission
+  keyword_pseudo1: assembly|extern|module|namespace|class|value|enum|field|method|public|private|family|famandassem|famorassem|privatescope|permissionset|vtfixup|vtentry|export
+  keyword_pseudo2: auto|sequential|explicit|ansi|unicode|autochar|extends|implements|static|entrypoint|locals|init|at|data|explicit|size|pack|custom|permission|corflags
   keyword_pseudo3: pinvokeimpl|cdecl|cil|managed|unmanaged|native|try|to|handler|catch|filter|finally|fault|noappdomain|noprocess|nomachine|hash|algorithm|ver|publickey|locale
-  keyword_pseudo4: publickeytoken|as|file|nometadata|mresource|at|nested|interface|abstract|sealed|specialname|import|serializable|beforefieldinit|demand
-  keyword_pseudo5: rtspecialname|hidebysig|instance|runtime|virtual|newslot|modreq|modopt|pinned|initonly|literal|notserialized|marshal|final|property|set|get
+  keyword_pseudo4: publickeytoken|as|file|nometadata|mresource|at|nested|interface|abstract|sealed|specialname|import|serializable|beforefieldinit|demand|language|line
+  keyword_pseudo5: rtspecialname|hidebysig|instance|runtime|virtual|newslot|modreq|modopt|pinned|initonly|literal|notserialized|marshal|final|property|set|get|maxstack
   keyword_pseudo6: unmanagedexp|reqsecobj|optial|forwardref|preservesig|internalcall|synchronized|noinlining|in|out|opt|param|override|event|addon|removeon|fire|other
-  keyword_pseudo: '{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}|{{keyword_pseudo4}}|{{keyword_pseudo5}}|{{keyword_pseudo6}}'
+  keyword_pseudo7: subsystem|file\salignment|imagebase|fromunmanaged|callmostderived|with|emitbyte|zeroinit|
+  keyword_pseudo: '{{keyword_pseudo7}}|{{keyword_pseudo1}}|{{keyword_pseudo2}}|{{keyword_pseudo3}}|{{keyword_pseudo4}}|{{keyword_pseudo5}}|{{keyword_pseudo6}}'
   keyword_libname: mscorlib
-  keyword_stdtype1: void|bool|char|int8|int16|int32|int64|float32|float64|typedref|unsigned|object
-  keyword_stdtype2: System|Object|ValueType|Enum|Exception|Console|string|valuetype|vararg|bytearray
+  keyword_stdtype1: void|bool|char|int8|int16|int32|int64|uint8|uint32|float32|float64|typedref|unsigned|object
+  keyword_stdtype2: System|Object|ValueType|Enum|Exception|Console|string|valuetype|vararg|bytearray|true|false
   keyword_stdtype: '{{keyword_stdtype1}}|{{keyword_stdtype2}}'
   keyword_stdfunc: WriteLine|ReadLine
 
